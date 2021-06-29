@@ -27,4 +27,8 @@ public class NovoAutorRequest {
 		return autor;
 	}
 
+	public String getEmail() {
+		return this.email;
+	}
+
 }

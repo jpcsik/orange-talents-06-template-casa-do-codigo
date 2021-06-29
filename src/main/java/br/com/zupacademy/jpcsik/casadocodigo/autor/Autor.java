@@ -24,13 +24,17 @@ public class Autor {
 	@NotBlank
 	@Size(max = 400)
 	private String descricao;
-	@SuppressWarnings("unused")
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
+	@Deprecated
+	public Autor() {
+	}
+
 	public Autor(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao) {
 		this.nome = nome;
 		this.email = email;
 		this.descricao = descricao;
 	}
 
+	
 }
