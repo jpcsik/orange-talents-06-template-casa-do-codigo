@@ -4,17 +4,23 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
+
 public class NovoAutorRequest {
 
 	@NotBlank
 	private String nome;
 	@NotBlank
 	@Email
+	@ValorUnico(fieldName = "email", domainClass = Autor.class)
 	private String email;
 	@NotBlank
 	@Size(max = 400)
 	private String descricao;
-	
+
+	@JsonCreator
 	public NovoAutorRequest(@NotBlank String nome, @NotBlank @Email String email,
 			@NotBlank @Size(max = 400) String descricao) {
 		this.nome = nome;
@@ -25,10 +31,6 @@ public class NovoAutorRequest {
 	public Autor toAutor() {
 		Autor autor = new Autor(this.nome, this.email, this.descricao);
 		return autor;
-	}
-
-	public String getEmail() {
-		return this.email;
 	}
 
 }

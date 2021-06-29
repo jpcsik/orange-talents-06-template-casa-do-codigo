@@ -2,16 +2,18 @@ package br.com.zupacademy.jpcsik.casadocodigo.categoria;
 
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
+import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
+
 public class NovaCategoriaRequest {
 
 	@NotBlank
+	@ValorUnico(fieldName = "nome", domainClass = Categoria.class)
 	private String nome;
 	
-	@Deprecated
-	public NovaCategoriaRequest() {
-		
-	}
-	
+	@JsonCreator(mode = Mode.PROPERTIES)
 	public NovaCategoriaRequest(@NotBlank String nome) {
 		this.nome = nome;
 	}
@@ -21,8 +23,4 @@ public class NovaCategoriaRequest {
 		return categoria;
 	}
 
-	public String getNome() {
-		return this.nome;
-	}
-	
 }
