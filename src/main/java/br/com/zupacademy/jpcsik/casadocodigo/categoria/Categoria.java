@@ -16,7 +16,7 @@ public class Categoria {
 	@NotBlank
 	@Column(unique = true)
 	private String nome;
-
+	
 	@Deprecated
 	public Categoria() {
 	}
