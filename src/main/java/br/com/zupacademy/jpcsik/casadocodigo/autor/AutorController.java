@@ -15,7 +15,7 @@ public class AutorController {
 	@Autowired
 	private AutorRepository repository;
 	
-	@PostMapping(value="/novoAutor")
+	@PostMapping("/autor/cadastrar")
 	@Transactional
 	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoAutorRequest novoAutor) {
 		repository.save(novoAutor.toAutor());

@@ -30,7 +30,7 @@ public class NovoLivroController {
 	@Autowired
 	private AutorRepository autorRepository;
 	
-	@PostMapping(value="/novoLivro")
+	@PostMapping("/livro/cadastrar")
 	@Transactional
 	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoLivroRequest novoLivro){
 		

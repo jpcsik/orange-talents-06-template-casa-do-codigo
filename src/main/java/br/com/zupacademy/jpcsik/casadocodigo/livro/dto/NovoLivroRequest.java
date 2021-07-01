@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -49,11 +48,10 @@ public class NovoLivroRequest {
 	private Long autor;
 	
 	
-	@JsonCreator(mode = Mode.PROPERTIES)
+	@JsonCreator
 	public NovoLivroRequest(@NotNull String titulo, @Length(max = 500) String resumo, @NotBlank String sumario,
 			@DecimalMin("20.00") BigDecimal preco, @Min(100) Integer numeroPaginas, String isbn,
 			@Future LocalDate dataPublicacao, @NotNull Long categoria, @NotNull Long autor) {
-		super();
 		this.titulo = titulo;
 		this.resumo = resumo;
 		this.sumario = sumario;
