@@ -1,6 +1,5 @@
-package br.com.zupacademy.jpcsik.casadocodigo.livro;
+package br.com.zupacademy.jpcsik.casadocodigo.livro.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +15,11 @@ import br.com.zupacademy.jpcsik.casadocodigo.autor.Autor;
 import br.com.zupacademy.jpcsik.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.jpcsik.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.jpcsik.casadocodigo.categoria.CategoriaRepository;
+import br.com.zupacademy.jpcsik.casadocodigo.livro.LivroRepository;
+import br.com.zupacademy.jpcsik.casadocodigo.livro.dto.NovoLivroRequest;
 
 @RestController
-public class LivroController {
+public class NovoLivroController {
 
 	@Autowired
 	private LivroRepository livroRepository;
@@ -45,12 +45,6 @@ public class LivroController {
 			livroRepository.save(novoLivro.toLivro(categoria.get(),autor.get()));
 			return ResponseEntity.ok().build();	
 		}
-	}
-	
-	@GetMapping(value="/listaLivros")
-	public List<LivroResponse> listar(){
-		List<Livro> lista = livroRepository.findAll();
-		return LivroResponse.converter(lista);
 	}
 	
 }

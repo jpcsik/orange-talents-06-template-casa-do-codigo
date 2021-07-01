@@ -34,6 +34,7 @@ public class Livro {
 	@NotBlank
 	private String resumo;
 	@Column(columnDefinition = "TEXT")
+	@NotBlank
 	private String sumario;
 	@DecimalMin("20.00")
 	@NotNull
@@ -43,7 +44,7 @@ public class Livro {
 	private Integer numeroPaginas;
 	@Column(unique = true)
 	@NotNull
-	private Integer isbn;
+	private String isbn;
 	@Future
 	private LocalDate dataPublicacao;
 	@ManyToOne
@@ -57,9 +58,9 @@ public class Livro {
 	public Livro() {
 	}
 
-	public Livro(@NotBlank String titulo, @Length(max = 500) @NotBlank String resumo, String sumario,
+	public Livro(@NotBlank String titulo, @Length(max = 500) @NotBlank String resumo, @NotBlank String sumario,
 			@DecimalMin("20.00") @NotNull BigDecimal preco, @Min(100) @NotNull Integer numeroPaginas,
-			@NotNull Integer isbn, @Future LocalDate dataPublicacao, @NotNull Categoria categoria,
+			@NotNull String isbn, @Future LocalDate dataPublicacao, @NotNull Categoria categoria,
 			@NotNull Autor autor) {
 		this.titulo = titulo;
 		this.resumo = resumo;
@@ -73,10 +74,35 @@ public class Livro {
 	}
 	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public String getTitulo() {
-		return this.titulo;
+		return titulo;
 	}
+
+	public String getResumo() {
+		return resumo;
+	}
+
+	public String getSumario() {
+		return sumario;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public Integer getNumeroPaginas() {
+		return numeroPaginas;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public Autor getAutor() {
+		return autor;
+	}
+	
 }

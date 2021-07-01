@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.livro;
+package br.com.zupacademy.jpcsik.casadocodigo.livro.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import br.com.zupacademy.jpcsik.casadocodigo.autor.Autor;
 import br.com.zupacademy.jpcsik.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
+import br.com.zupacademy.jpcsik.casadocodigo.livro.Livro;
 
 public class NovoLivroRequest {
 
@@ -28,6 +29,7 @@ public class NovoLivroRequest {
 	@Length(max = 500)
 	@NotBlank
 	private String resumo;
+	@NotBlank
 	private String sumario;
 	@DecimalMin("20.00")
 	@NotNull
@@ -37,7 +39,7 @@ public class NovoLivroRequest {
 	private Integer numeroPaginas;
 	@ValorUnico(fieldName = "isbn", domainClass = Livro.class)
 	@NotNull
-	private Integer isbn;
+	private String isbn;
 	@Future
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate dataPublicacao;
@@ -48,8 +50,8 @@ public class NovoLivroRequest {
 	
 	
 	@JsonCreator(mode = Mode.PROPERTIES)
-	public NovoLivroRequest(@NotNull String titulo, @Length(max = 500) String resumo, String sumario,
-			@DecimalMin("20.00") BigDecimal preco, @Min(100) Integer numeroPaginas, Integer isbn,
+	public NovoLivroRequest(@NotNull String titulo, @Length(max = 500) String resumo, @NotBlank String sumario,
+			@DecimalMin("20.00") BigDecimal preco, @Min(100) Integer numeroPaginas, String isbn,
 			@Future LocalDate dataPublicacao, @NotNull Long categoria, @NotNull Long autor) {
 		super();
 		this.titulo = titulo;
