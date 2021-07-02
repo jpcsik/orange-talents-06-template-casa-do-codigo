@@ -22,12 +22,17 @@ public class Estado {
 	
 	@Deprecated
 	public Estado() {
-		
 	}
 	
 	public Estado(@NotBlank String nome, Pais pais) {
 		this.nome = nome;
 		this.pais = pais;
+	}
+
+	public Boolean pertenceAoPais(Pais pais) {
+		if(this.pais.getId() == pais.getId()) {
+			return true;
+		}return false;
 	}
 	
 }

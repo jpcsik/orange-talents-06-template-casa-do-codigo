@@ -17,7 +17,7 @@ import br.com.zupacademy.jpcsik.casadocodigo.livro.dto.ListaLivroResponse;
 
 @RestController
 @RequestMapping("/livro")
-public class LivroController {
+public class MostrarLivroController {
 
 	@Autowired
 	private LivroRepository livroRepository;

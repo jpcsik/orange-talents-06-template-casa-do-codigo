@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.estado;
+package br.com.zupacademy.jpcsik.casadocodigo.validacao;
 
 import java.util.Optional;
 
@@ -7,17 +7,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.zupacademy.jpcsik.casadocodigo.pais.Pais;
-import br.com.zupacademy.jpcsik.casadocodigo.pais.PaisRepository;
+import br.com.zupacademy.jpcsik.casadocodigo.estado.Estado;
+import br.com.zupacademy.jpcsik.casadocodigo.estado.EstadoRepository;
+import br.com.zupacademy.jpcsik.casadocodigo.estado.NovoEstadoRequest;
 
 @Component
 public class EstadoValidator implements Validator{
 
 	@Autowired
 	private EstadoRepository estadoRepository;
-	
-	@Autowired
-	private PaisRepository paisRepository;
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -31,12 +29,9 @@ public class EstadoValidator implements Validator{
 		}
 		
 		NovoEstadoRequest request = (NovoEstadoRequest) target;
-		Optional<Pais> findById = paisRepository.findById(request.getPais());
-		Optional<Estado> findByNomeAndPais = estadoRepository.findByNomeAndPaisId(request.getNome(), request.getPais());		
+		Optional<Estado> findByNomeAndPais = estadoRepository.findByNomeAndPaisId(request.getNome(), request.getIdPais());		
 		
-		if(findById.isEmpty()) {
-			errors.rejectValue("pais", null, "País não está cadastrado");
-		}if(findByNomeAndPais.isPresent()) {
+		if(findByNomeAndPais.isPresent()) {
 			errors.rejectValue("nome", null, "Estado já cadastrado");
 		}
 	

@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.errovalidacao;
+package br.com.zupacademy.jpcsik.casadocodigo.validacao;
 
 public class ErroValidacaoDto {
 

@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.errovalidacao;
+package br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,10 +12,10 @@ import javax.validation.Payload;
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {ValorUnicoValidator.class})
-public @interface ValorUnico {
+@Constraint(validatedBy = {ExisteValidator.class})
+public @interface Existe {
 	 
-	String message() default "Já está cadastrado!";
+	String message() default "Não existe!";
 	 
 	Class<?>[] groups() default {};
 	 

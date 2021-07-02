@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
-import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
+import br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes.ValorUnico;
 
 public class NovaCategoriaRequest {
 

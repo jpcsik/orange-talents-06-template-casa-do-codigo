@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.categoria;
+package br.com.zupacademy.jpcsik.casadocodigo.autor;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CategoriaController {
+public class NovoAutorController {
 
 	@Autowired
-	private CategoriaRepository repository;
+	private AutorRepository repository;
 	
-	@PostMapping("/categoria/cadastrar")
+	@PostMapping("/autor/cadastrar")
 	@Transactional
-	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovaCategoriaRequest novaCategoria){
-		repository.save(novaCategoria.toCategoria());
+	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoAutorRequest novoAutor) {
+		repository.save(novoAutor.toAutor());
 		return ResponseEntity.ok().build();
 	}
 	

@@ -17,8 +17,9 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import br.com.zupacademy.jpcsik.casadocodigo.autor.Autor;
 import br.com.zupacademy.jpcsik.casadocodigo.categoria.Categoria;
-import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
 import br.com.zupacademy.jpcsik.casadocodigo.livro.Livro;
+import br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes.Existe;
+import br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes.ValorUnico;
 
 public class NovoLivroRequest {
 
@@ -43,15 +44,18 @@ public class NovoLivroRequest {
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate dataPublicacao;
 	@NotNull
-	private Long categoria;
+	@Existe(fieldName = "id", domainClass = Categoria.class)
+	private Long idCategoria;
 	@NotNull
-	private Long autor;
+	@Existe(fieldName = "id", domainClass = Autor.class)
+	private Long idAutor;
 	
 	
 	@JsonCreator
-	public NovoLivroRequest(@NotNull String titulo, @Length(max = 500) String resumo, @NotBlank String sumario,
-			@DecimalMin("20.00") BigDecimal preco, @Min(100) Integer numeroPaginas, String isbn,
-			@Future LocalDate dataPublicacao, @NotNull Long categoria, @NotNull Long autor) {
+	public NovoLivroRequest(@NotBlank String titulo, @Length(max = 500) @NotBlank String resumo,
+			@NotBlank String sumario, @DecimalMin("20.00") @NotNull BigDecimal preco,
+			@Min(100) @NotNull Integer numeroPaginas, @NotNull String isbn, @Future LocalDate dataPublicacao,
+			@NotNull Long idCategoria, @NotNull Long idAutor) {
 		this.titulo = titulo;
 		this.resumo = resumo;
 		this.sumario = sumario;
@@ -59,8 +63,8 @@ public class NovoLivroRequest {
 		this.numeroPaginas = numeroPaginas;
 		this.isbn = isbn;
 		this.dataPublicacao = dataPublicacao;
-		this.categoria = categoria;
-		this.autor = autor;
+		this.idCategoria = idCategoria;
+		this.idAutor = idAutor;
 	}
 
 	public Livro toLivro(Categoria categoria, Autor autor) {
@@ -77,12 +81,12 @@ public class NovoLivroRequest {
 		return livro;
 	}
 
-	public Long getCategoria() {
-		return this.categoria;
+	public Long getIdCategoria() {
+		return this.idCategoria;
 	}
 
-	public Long getAutor() {
-		return this.autor;
+	public Long getIdAutor() {
+		return this.idAutor;
 	}
 
 }

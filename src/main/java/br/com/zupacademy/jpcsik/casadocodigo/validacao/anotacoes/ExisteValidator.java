@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.errovalidacao;
+package br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValorUnicoValidator implements ConstraintValidator<ValorUnico, Object>{
+public class ExisteValidator implements ConstraintValidator<Existe, Object>{
 
 	private String campo;
 	private Class<?> classe;
@@ -17,17 +17,17 @@ public class ValorUnicoValidator implements ConstraintValidator<ValorUnico, Obje
 	private EntityManager manager;
 	
 	@Override
-	public void initialize(ValorUnico anotacao) {
+	public void initialize(Existe anotacao) {
 		campo = anotacao.fieldName();
 		classe = anotacao.domainClass();
 	}
 	
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		Query query = manager.createQuery("SELECT a FROM "+classe.getName()+" a WHERE "+campo+"=:value");
+		Query query = manager.createQuery("SELECT 1 FROM "+classe.getName()+" WHERE "+campo+"=:value");
 		query.setParameter("value", value);
 		List<?> resultList = query.getResultList();
-		return resultList.isEmpty();
+		return !resultList.isEmpty();
 	}
 
 }

@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import br.com.zupacademy.jpcsik.casadocodigo.errovalidacao.ValorUnico;
+import br.com.zupacademy.jpcsik.casadocodigo.validacao.anotacoes.ValorUnico;
 
 public class NovoAutorRequest {
 

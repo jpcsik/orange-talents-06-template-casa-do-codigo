@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zupacademy.jpcsik.casadocodigo.pais.Pais;
 import br.com.zupacademy.jpcsik.casadocodigo.pais.PaisRepository;
+import br.com.zupacademy.jpcsik.casadocodigo.validacao.EstadoValidator;
 
 @RestController
-public class EstadoController {
+public class NovoEstadoController {
 
 	@Autowired
 	private EstadoRepository estadoRepository;
@@ -37,7 +38,7 @@ public class EstadoController {
 	@Transactional
 	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoEstadoRequest novoEstado) {
 
-		Optional<Pais> pais = paisRepository.findById(novoEstado.getPais());
+		Optional<Pais> pais = paisRepository.findById(novoEstado.getIdPais());
 		estadoRepository.save(novoEstado.toEstado(pais.get()));
 		return ResponseEntity.ok().build();
 

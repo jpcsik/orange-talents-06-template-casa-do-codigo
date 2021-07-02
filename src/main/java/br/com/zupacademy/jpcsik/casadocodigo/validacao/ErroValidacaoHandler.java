@@ -1,4 +1,4 @@
-package br.com.zupacademy.jpcsik.casadocodigo.errovalidacao;
+package br.com.zupacademy.jpcsik.casadocodigo.validacao;
 
 import java.util.ArrayList;
 import java.util.List;

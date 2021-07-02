@@ -34,17 +34,12 @@ public class NovoLivroController {
 	@Transactional
 	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoLivroRequest novoLivro){
 		
-		Optional<Categoria> categoria = categoriaRepository.findById(novoLivro.getCategoria());
-		Optional<Autor> autor = autorRepository.findById(novoLivro.getAutor());
+		Optional<Categoria> categoria = categoriaRepository.findById(novoLivro.getIdCategoria());
+		Optional<Autor> autor = autorRepository.findById(novoLivro.getIdAutor());
 		
-		if(categoria.isEmpty()) {
-			return ResponseEntity.badRequest().body("Categoria não existe!");
-		}if(autor.isEmpty()) {
-			return ResponseEntity.badRequest().body("Autor não existe!");
-		}else{
-			livroRepository.save(novoLivro.toLivro(categoria.get(),autor.get()));
-			return ResponseEntity.ok().build();	
-		}
+		livroRepository.save(novoLivro.toLivro(categoria.get(),autor.get()));
+		return ResponseEntity.ok().build();	
+		
 	}
 	
 }

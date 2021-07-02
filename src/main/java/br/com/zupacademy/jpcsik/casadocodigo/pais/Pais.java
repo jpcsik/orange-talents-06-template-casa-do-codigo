@@ -19,11 +19,14 @@ public class Pais {
 	
 	@Deprecated
 	public Pais() {
-		
 	}
 	
 	public Pais(@NotBlank String nome) {
 		this.nome = nome;
+	}
+
+	public Long getId() {
+		return id;
 	}
 	
 }
